@@ -5,7 +5,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
-import { StocksProvider } from "./contexts/StocksContext";
 import "react-native-gesture-handler";
 
 const Stack = createStackNavigator();
@@ -13,16 +12,14 @@ const Stack = createStackNavigator();
 export default function App(props) {
   return (
     <View style={styles.container}>
-      <StocksProvider>
-        {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-        <NavigationContainer theme={DarkTheme}>
-          <Stack.Navigator initialRouteName="Login">
-            <Stack.Screen name="Home" component={BottomTabNavigator} />
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Register" component={Register} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </StocksProvider>
+      {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+      <NavigationContainer theme={DarkTheme}>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen name="Home" component={BottomTabNavigator} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Register" component={Register} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </View>
   );
 }

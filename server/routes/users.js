@@ -143,6 +143,7 @@ router.post("/addWatchlist", authorize, async function (req, res) {
 
 router.post("/getwatchlist", authorize, async function (req, res) {
   const email = currentEmail;
+  const watchlist = [];
   if (!email) {
     res.status(400).json({
       error: true,

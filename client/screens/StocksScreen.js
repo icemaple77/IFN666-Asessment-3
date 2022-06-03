@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  View /* include other react-native components here as needed */,
-} from "react-native";
+import { StyleSheet, View, SafeAreaView } from "react-native";
 import { useStocksContext } from "../contexts/StocksContext";
 import { scaleSize } from "../constants/Layout";
+import WatchList from "../components/WatchList";
 
 // FixMe: implement other components and functions used in StocksScreen here (don't just put all the JSX in StocksScreen below)
 
@@ -21,7 +19,11 @@ export default function StocksScreen({ route }) {
   }, [watchList]);
 
   return (
-    <View style={styles.container}>{/* FixMe: add children here! */}</View>
+    <SafeAreaView onPress={Keyboard}>
+      <View style={styles.container}>
+        <WatchList />
+      </View>
+    </SafeAreaView>
   );
 }
 

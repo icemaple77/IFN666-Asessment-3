@@ -11,20 +11,9 @@ import {
 import { ListItem } from "react-native-elements";
 import { useStocksContext } from "../contexts/StocksContext";
 
-function CheckButton(watchList, symbolSearched) {
-  let check = false;
-  watchList.map((e) => {
-    if (e.symbol === symbolSearched) {
-      check = true;
-    }
-  });
-  return check;
-}
-
-export default function StockList(props) {
-  let data = props.rowData;
-  const { watchList, addToWatchlist } = useStocksContext();
-    
+export default function WatchList(props) {
+  const { watchList } = useStocksContext();
+  let data = watchList;
   return (
     <SafeAreaView>
       <ScrollView>
@@ -35,23 +24,7 @@ export default function StockList(props) {
                 <ListItem.Title style={styles.symbol}>
                   {e.symbol}
                 </ListItem.Title>
-                <ListItem.Subtitle numberOfLines={1} style={styles.name}>
-                  {e.name}
-                </ListItem.Subtitle>
               </ListItem.Content>
-              <Button
-                title={CheckButton(watchList, e.symbol) ? "Delete" : "Add"}
-                style={styles.button}
-                color="black"
-                onPress={
-                  CheckButton(watchList, e.symbol)
-                    ? () => {}
-                    : () => {
-                        addToWatchlist(e.symbol);
-                        window.location.reload(false);
-                      }
-                }
-              />
             </ListItem>
           </View>
         ))}
