@@ -1,19 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const StocksContext = React.createContext();
-let list = [];
+
+export function useStocksContext() {
+  return useContext(StocksContext);
+}
 
 export const StocksProvider = ({ children }) => {
-  const [state, setState] = useState([]);
-  return (
-    <StocksContext.Provider value={[state, setState]}>
-      {children}
-    </StocksContext.Provider>
-  );
-};
-
-export const useStocksContext = () => {
-  const [state, setState] = useContext(StocksContext);
+  const [watchList, setState] = useState([]);
 
   async function getWatchList() {
     const ServerURl = "http://localhost:3000";
@@ -30,11 +24,9 @@ export const useStocksContext = () => {
 
     let data = await res.json();
     if (data.error == false) {
-      alert(data.message);
-      list = data.watchList;
-      console.log(list);
-      setState((state) => ({ ...state, symbolList: list }));
-      console.log(state);
+      console.log(data.watchList);
+      setState(data.watchList);
+      console.log(watchList);
     } else {
       alert("No Symbol in the watchlist");
     }
@@ -71,8 +63,9 @@ export const useStocksContext = () => {
     getWatchList();
   }, []);
 
-  return {
-    watchList: state,
-    addToWatchlist,
-  };
+  return (
+    <StocksContext.Provider value={{ watchList, setState, addToWatchlist }}>
+      {children}
+    </StocksContext.Provider>
+  );
 };

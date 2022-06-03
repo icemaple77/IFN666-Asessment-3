@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  TouchableWithoutFeedback,
-  Keyboard /* include other react native components here as needed */,
-  Button,
-} from "react-native";
+import { StyleSheet, View, SafeAreaView, Keyboard } from "react-native";
 import SearchBar from "../components/SearchBar";
 import SearchApiStocks from "../contexts/ApiStocks";
 import StockList from "../components/StockList";

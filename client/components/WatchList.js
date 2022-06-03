@@ -1,29 +1,8 @@
-import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  ScrollView,
-  TouchableWithoutFeedback,
-  Keyboard /* include other react native components here as needed */,
-  Button,
-} from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
 import { ListItem } from "react-native-elements";
-import { useStocksContext } from "../contexts/StocksContext";
-
-function CheckButton(watchList, symbolSearched) {
-  let check = false;
-  watchList.map((e) => {
-    if (e.symbol === symbolSearched) {
-      check = true;
-    }
-  });
-  return check;
-}
 
 export default function StockList(props) {
   let data = props.rowData;
-  const { watchList, addToWatchlist } = useStocksContext();
   return (
     <SafeAreaView>
       <ScrollView>
@@ -38,16 +17,6 @@ export default function StockList(props) {
                   {e.name}
                 </ListItem.Subtitle>
               </ListItem.Content>
-              <Button
-                title={CheckButton(watchList, e.symbol) ? "Delete" : "Add"}
-                style={styles.button}
-                color="black"
-                onPress={
-                  CheckButton(watchList, e.symbol)
-                    ? () => {}
-                    : () => addToWatchlist(e.symbol)
-                }
-              />
             </ListItem>
           </View>
         ))}

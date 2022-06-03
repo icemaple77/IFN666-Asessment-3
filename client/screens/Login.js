@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import TextField from "../components/TextField";
-import GlobalStorage from "../components/GlobalStorage";
 
 const API_URL = "http://localhost:3000";
 
