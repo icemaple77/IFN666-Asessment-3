@@ -12,9 +12,9 @@ import { useStocksContext } from "../contexts/StocksContext";
 export default function Chart(props) {
   const { loadingH, rowDataH, fecthHistory } = useStocksContext();
   useEffect(() => {
-    fecthHistory(props.symbol);
+    //fecthHistory(props.symbol);
   }, []);
 
-  console.log("rowData", rowDataH, "Symbol", props.symbol);
+  console.log("rowData", rowDataH, "Symbol");
   return <SafeAreaView></SafeAreaView>;
 }

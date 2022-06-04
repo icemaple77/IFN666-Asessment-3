@@ -17,7 +17,7 @@ export default function StockList(props) {
             <ListItem
               containerStyle={styles.listitem}
               onPress={() => {
-                props.setHistorySymbol(item.symbol);
+                props.setHistorySymbol(i);
                 props.refRBSheet.current.open();
               }}
             >

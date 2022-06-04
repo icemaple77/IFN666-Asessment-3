@@ -49,7 +49,7 @@ export default function OpenBottomSheet(props) {
             },
           }}
         >
-          <BottomSheetContext symbol={props.historySymbol} />
+          <BottomSheetContext symbolIndex={props.symbolIndex} />
         </RBSheet>
       </View>
     </SafeAreaView>

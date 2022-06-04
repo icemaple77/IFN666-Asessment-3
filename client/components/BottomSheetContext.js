@@ -13,9 +13,9 @@ export default function BottomSheetContext(props) {
   return (
     <SafeAreaView>
       <View>
-        <Text>History of {props.symbol}</Text>
-        <Table symbol={props.symbol}></Table>
-        <Chart symbol={props.symbol}></Chart>
+        <Text>History of aaa</Text>
+        <Table index={props.symbolIndex}></Table>
+        <Chart></Chart>
       </View>
     </SafeAreaView>
   );

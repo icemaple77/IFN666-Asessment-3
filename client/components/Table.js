@@ -5,20 +5,80 @@ import {
   SafeAreaView,
   ScrollView,
   Button,
+  Text,
 } from "react-native";
 import { Divider } from "react-native-elements";
 import SearchApiQuote from "../contexts/ApiQuotes";
 import { useStocksContext } from "../contexts/StocksContext";
 
 export default function Table(props) {
-  const { loadingQ, rowDataQ, fecthQuote } = useStocksContext();
-
-  fecthQuote(props.symbol);
-
-  console.log("rowDataQ", rowDataQ);
+  const { loadingQ, rowDataQ } = useStocksContext();
+  console.log("rowDataQ", rowDataQ[props.index]);
 
   if (loadingQ == false) {
-    return <SafeAreaView></SafeAreaView>;
+    return (
+      <SafeAreaView>
+        <View>
+          <View style={styles.container}>
+            {/* Left Side Data */}
+            <View style={styles.subContainer}>
+              <View style={styles.leftDataContainer}>
+                <Text style={styles.titleText}> Open </Text>
+                <Text style={styles.dataText}>
+                  {" "}
+                  {rowDataQ[props.index].open.toFixed(2)}{" "}
+                </Text>
+              </View>
+
+              <View style={styles.leftDataContainer}>
+                <Text style={styles.titleText}> Day High </Text>
+                <Text style={styles.dataText}>
+                  {" "}
+                  {rowDataQ[props.index].dayHigh.toFixed(2)}{" "}
+                </Text>
+              </View>
+
+              <View style={styles.leftDataContainer}>
+                <Text style={styles.titleText}> Day Low </Text>
+                <Text style={styles.dataText}>
+                  {" "}
+                  {rowDataQ[props.index].dayLow.toFixed(2)}{" "}
+                </Text>
+              </View>
+            </View>
+
+            <Divider orientation="vertical" height={"100%"} width={0.5} />
+
+            {/* Right Side Data */}
+            <View style={styles.subContainer}>
+              <View style={styles.rightDataContainer}>
+                <Text style={styles.titleText}> Price </Text>
+                <Text style={styles.dataText}>
+                  {" "}
+                  {rowDataQ[props.index].price.toFixed(2)}{" "}
+                </Text>
+              </View>
+
+              <View style={styles.rightDataContainer}>
+                <Text style={styles.titleText}> Year High </Text>
+                <Text style={styles.dataText}>
+                  {" "}
+                  {rowDataQ[props.index].yearHigh.toFixed(2)}{" "}
+                </Text>
+              </View>
+
+              <View style={styles.rightDataContainer}>
+                <Text style={styles.titleText}> Year Low </Text>
+                <Text style={styles.dataText}>
+                  {" "}
+                  {rowDataQ[props.index].yearLow.toFixed(2)}{" "}
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </SafeAreaView>
+    );
   }
 }
 
@@ -50,60 +110,6 @@ const styles = StyleSheet.create({
   },
   dataText: {
     fontSize: 14,
-    color: "white",
+    color: "black",
   },
 });
-
-// <View>
-//         <View style={styles.container}>
-//           {/* Left Side Data */}
-//           <View style={styles.subContainer}>
-//             <View style={styles.leftDataContainer}>
-//               <Text style={styles.titleText}> Open </Text>
-//               <Text style={styles.dataText}> {rowDataQ.open.toFixed(2)} </Text>
-//             </View>
-
-//             <View style={styles.leftDataContainer}>
-//               <Text style={styles.titleText}> Day High </Text>
-//               <Text style={styles.dataText}>
-//                 {" "}
-//                 {rowDataQ.dayHigh.toFixed(2)}{" "}
-//               </Text>
-//             </View>
-
-//             <View style={styles.leftDataContainer}>
-//               <Text style={styles.titleText}> Day Low </Text>
-//               <Text style={styles.dataText}>
-//                 {" "}
-//                 {rowDataQ.dayLow.toFixed(2)}{" "}
-//               </Text>
-//             </View>
-//           </View>
-
-//           <Divider orientation="vertical" height={"100%"} width={0.5} />
-
-//           {/* Right Side Data */}
-//           <View style={styles.subContainer}>
-//             <View style={styles.rightDataContainer}>
-//               <Text style={styles.titleText}> Price </Text>
-//               <Text style={styles.dataText}> {rowDataQ.price.toFixed(2)} </Text>
-//             </View>
-
-//             <View style={styles.rightDataContainer}>
-//               <Text style={styles.titleText}> Year High </Text>
-//               <Text style={styles.dataText}>
-//                 {" "}
-//                 {rowDataQ.yearHigh.toFixed(2)}{" "}
-//               </Text>
-//             </View>
-
-//             <View style={styles.rightDataContainer}>
-//               <Text style={styles.titleText}> Year Low </Text>
-//               <Text style={styles.dataText}>
-//                 {" "}
-//                 {rowDataQ.yearLow.toFixed(2)}{" "}
-//               </Text>
-//             </View>
-//           </View>
-//         </View>
-//       </View>
