@@ -1,12 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, View, SafeAreaView } from "react-native";
 import { useStocksContext } from "../contexts/StocksContext";
 import WatchList from "../components/WatchList";
+import SearchApiQuote from "../contexts/ApiQuotes";
+import BottomSheet from "../components/BottomSheet";
 
 // FixMe: implement other components and functions used in StocksScreen here (don't just put all the JSX in StocksScreen below)
 
 export default function StocksScreen({ route }) {
   const { watchList } = useStocksContext();
+  const refRBSheet = useRef();
+  let result = [];
+  watchList.map((e) => {
+    result.push(e.symbol);
+  });
+  let symbollist_fetch = result.toString();
+  const { loadingQ, errorQ, rowDataQ, fecthQuote } = useStocksContext();
+  fecthQuote(symbollist_fetch);
+  const [historySymbol, setHistorySymbol] = useState("");
   const [state, setState] = useState({
     /* FixMe: initial state here */
   });
@@ -20,7 +31,12 @@ export default function StocksScreen({ route }) {
   return (
     <SafeAreaView onPress={Keyboard}>
       <View style={styles.container}>
-        <WatchList rowData={watchList} />
+        <WatchList
+          rowData={rowDataQ}
+          refRBSheet={refRBSheet}
+          setHistorySymbol={setHistorySymbol}
+        />
+        <BottomSheet refRBSheet={refRBSheet} historySymbol={historySymbol} />
       </View>
     </SafeAreaView>
   );

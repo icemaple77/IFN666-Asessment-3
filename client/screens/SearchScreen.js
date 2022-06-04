@@ -3,6 +3,7 @@ import { StyleSheet, View, SafeAreaView, Keyboard } from "react-native";
 import SearchBar from "../components/SearchBar";
 import SearchApiStocks from "../contexts/ApiStocks";
 import StockList from "../components/StockList";
+import { useStocksContext } from "../contexts/StocksContext";
 
 function filterStocks(data, symbol) {
   let finalData = [];
@@ -17,10 +18,10 @@ function filterStocks(data, symbol) {
 }
 
 export default function SearchScreen({ navigation }) {
+  const { watchList, setState } = useStocksContext();
   const { loading, rowData, error } = SearchApiStocks();
   const [symbol, setSymbol] = useState("");
-  let stocksList = filterStocks(rowData, symbol);
-
+  const stocksList = filterStocks(rowData, symbol);
   return (
     <SafeAreaView onPress={Keyboard}>
       <View style={styles.container}>

@@ -1,4 +1,10 @@
-import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  ScrollView,
+  Button,
+} from "react-native";
 import { ListItem } from "react-native-elements";
 
 export default function StockList(props) {
@@ -6,17 +12,36 @@ export default function StockList(props) {
   return (
     <SafeAreaView>
       <ScrollView>
-        {data.map((e, i) => (
+        {data.map((item, i) => (
           <View key={i} style={styles.container}>
-            <ListItem containerStyle={styles.listitem}>
+            <ListItem
+              containerStyle={styles.listitem}
+              onPress={() => {
+                props.setHistorySymbol(item.symbol);
+                props.refRBSheet.current.open();
+              }}
+            >
               <ListItem.Content>
                 <ListItem.Title style={styles.symbol}>
-                  {e.symbol}
+                  {item.symbol}
                 </ListItem.Title>
                 <ListItem.Subtitle numberOfLines={1} style={styles.name}>
-                  {e.name}
+                  {item.name}
                 </ListItem.Subtitle>
               </ListItem.Content>
+              <View style={{ flex: 1, width: "auto", maxWidth: "25%" }}>
+                <ListItem.Content>
+                  <ListItem.Title style={styles.symbol}>
+                    {"$" + item.price.toFixed(2)}
+                  </ListItem.Title>
+                </ListItem.Content>
+                <View>
+                  <Button
+                    title={item.percentage.toFixed(2) + "%"}
+                    color={item.percentage > 0 ? "#228B22" : "#B22222"}
+                  />
+                </View>
+              </View>
             </ListItem>
           </View>
         ))}
