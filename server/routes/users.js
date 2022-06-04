@@ -126,7 +126,8 @@ router.post("/addWatchlist", authorize, async function (req, res) {
   const queryUsers = req.db
     .from("watchlist")
     .select("*")
-    .where({ email: email, symbol: symbol });
+    .where("email", "=", email)
+    .andWhere("symbol", "=", symbol);
 
   if (queryUsers.length > 0) {
     res.json({
@@ -139,6 +140,42 @@ router.post("/addWatchlist", authorize, async function (req, res) {
   await req.db.from("watchlist").insert({ email: email, symbol: symbol });
   console.log("successfully inserted symbol to watchlist");
   res.json({ error: false, message: "Successfully add to watchlist" });
+});
+
+router.post("/deleteWatchlist", authorize, async function (req, res) {
+  const email = currentEmail;
+  const symbol = req.body.symbol;
+
+  if (!email || !symbol) {
+    res.status(400).json({
+      error: true,
+      message: "Email and symbol needed",
+    });
+
+    return;
+  }
+
+  const queryUsers = req.db
+    .from("watchlist")
+    .select("*")
+    .where("email", "=", email)
+    .andWhere("symbol", "=", symbol);
+
+  if (queryUsers.length == 0) {
+    res.json({
+      error: true,
+      message: "No symbol exist in watchlist",
+    });
+    return;
+  }
+
+  await req.db
+    .from("watchlist")
+    .del({ email: email, symbol: symbol })
+    .where("email", "=", email)
+    .andWhere("symbol", "=", symbol);
+  console.log("successfully deleted symbol from watchlist");
+  res.json({ error: false, message: "Successfully deleted from watchlist" });
 });
 
 router.post("/getwatchlist", authorize, async function (req, res) {

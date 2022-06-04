@@ -65,6 +65,32 @@ export const StocksProvider = ({ children }) => {
     }
   }
 
+  async function deleteToWatchlist(newSymbol) {
+    //FixMe: add the new symbol to the watchlist, save it in useStockContext state and persist to AsyncStorage
+    const ServerURl = "http://localhost:3000";
+    const url = `${ServerURl}/users/deleteWatchlist`;
+    const token = await AsyncStorage.getItem("@storage_token");
+    let res = await fetch(url, {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        symbol: newSymbol,
+      }),
+    });
+
+    let data = await res.json();
+    console.log(data);
+    if (data.error == false) {
+      alert(data.message);
+    } else {
+      alert("Symbol is not deleted from the watchlist");
+    }
+  }
+
   async function getDataQuote(symbol) {
     const url = `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${API_KEY}`;
     let res = await fetch(url);
@@ -125,6 +151,7 @@ export const StocksProvider = ({ children }) => {
         watchList,
         setState,
         addToWatchlist,
+        deleteToWatchlist,
         loadingQ,
         rowDataQ,
         fecthQuote,

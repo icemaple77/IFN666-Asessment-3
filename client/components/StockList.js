@@ -23,7 +23,7 @@ function CheckButton(watchList, symbolSearched) {
 
 export default function StockList(props) {
   let data = props.rowData;
-  const { watchList, addToWatchlist } = useStocksContext();
+  const { watchList, addToWatchlist, deleteToWatchlist } = useStocksContext();
   return (
     <SafeAreaView>
       <ScrollView>
@@ -44,7 +44,9 @@ export default function StockList(props) {
                 color="black"
                 onPress={
                   CheckButton(watchList, e.symbol)
-                    ? () => {}
+                    ? () => {
+                        deleteToWatchlist(e.symbol);
+                      }
                     : () => addToWatchlist(e.symbol)
                 }
               />
