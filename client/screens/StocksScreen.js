@@ -17,7 +17,7 @@ export default function StocksScreen({ route }) {
   let symbollist_fetch = result.toString();
   const { loadingQ, errorQ, rowDataQ, fecthQuote } = useStocksContext();
   fecthQuote(symbollist_fetch);
-  const [historyIndex, setHistoryIndex] = useState(0);
+  const [historySymbol, setHistorySymbol] = useState(0);
   const [state, setState] = useState({
     /* FixMe: initial state here */
   });
@@ -34,9 +34,9 @@ export default function StocksScreen({ route }) {
         <WatchList
           rowData={rowDataQ}
           refRBSheet={refRBSheet}
-          setHistorySymbol={setHistoryIndex}
+          setHistorySymbol={setHistorySymbol}
         />
-        <BottomSheet refRBSheet={refRBSheet} symbolIndex={historyIndex} />
+        <BottomSheet refRBSheet={refRBSheet} historySymbol={historySymbol} />
       </View>
     </SafeAreaView>
   );

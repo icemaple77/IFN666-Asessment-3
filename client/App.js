@@ -5,6 +5,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
+import BottomSheetContext from "./components/BottomSheetContext";
+import OpenBottomSheet from "./components/BottomSheet";
+import StockList from "./components/WatchList";
 import { StocksProvider } from "./contexts/StocksContext";
 import "react-native-gesture-handler";
 
@@ -19,7 +22,12 @@ export default function App(props) {
           <Stack.Navigator initialRouteName="Login">
             <Stack.Screen name="Home" component={BottomTabNavigator} />
             <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen
+              name="BottomSheetContext"
+              component={BottomSheetContext}
+            />
+            <Stack.Screen name="OpenBottomSheet" component={OpenBottomSheet} />
+            <Stack.Screen name="StockList" component={StockList} />
           </Stack.Navigator>
         </NavigationContainer>
       </StocksProvider>

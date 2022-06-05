@@ -11,11 +11,11 @@ export function useStocksContext() {
 export const StocksProvider = ({ children }) => {
   const [watchList, setState] = useState([]);
 
-  const [loadingQ, setLoadingQ] = useState(true);
-  const [rowDataQ, setDataQ] = useState([]);
+  // const [loadingQ, setLoadingQ] = useState(true);
+  // const [rowDataQ, setDataQ] = useState([]);
 
-  const [loadingH, setLoadingH] = useState(true);
-  const [rowDataH, setDataH] = useState([]);
+  // const [loadingH, setLoadingH] = useState(true);
+  // const [rowDataH, setDataH] = useState([]);
 
   async function getWatchList() {
     const ServerURl = "http://localhost:3000";
@@ -91,54 +91,54 @@ export const StocksProvider = ({ children }) => {
     }
   }
 
-  async function getDataQuote(symbol) {
-    const url = `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${API_KEY}`;
-    let res = await fetch(url);
-    let data = await res.json();
-    let quote = data.map((quote) => {
-      return {
-        symbol: quote.symbol,
-        name: quote.name,
-        price: quote.price,
-        open: quote.open,
-        percentage: quote.changesPercentage,
-        dayHigh: quote.dayHigh,
-        dayLow: quote.dayLow,
-        yearHigh: quote.yearHigh,
-        yearLow: quote.yearLow,
-      };
-    });
+  // async function getDataQuote(symbol) {
+  //   const url = `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=${API_KEY}`;
+  //   let res = await fetch(url);
+  //   let data = await res.json();
+  //   let quote = data.map((quote) => {
+  //     return {
+  //       symbol: quote.symbol,
+  //       name: quote.name,
+  //       price: quote.price,
+  //       open: quote.open,
+  //       percentage: quote.changesPercentage,
+  //       dayHigh: quote.dayHigh,
+  //       dayLow: quote.dayLow,
+  //       yearHigh: quote.yearHigh,
+  //       yearLow: quote.yearLow,
+  //     };
+  //   });
 
-    return quote;
-  }
+  //   return quote;
+  // }
 
-  async function getDataHistory(symbol) {
-    let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`;
-    let res = await fetch(url);
-    let data = await res.json();
-    let dataObj = Object.entries(data)[1][1];
-    let history = Object.entries(dataObj);
-    return history.map((history) => {
-      return {
-        date: history[0],
-        open: history[1]["1. open"],
-        low: history[1]["2. high"],
-        high: history[1]["3. low"],
-        close: history[1]["4. close"],
-        volume: history[1]["5. volume"],
-      };
-    });
-  }
+  // async function getDataHistory(symbol) {
+  //   let url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`;
+  //   let res = await fetch(url);
+  //   let data = await res.json();
+  //   let dataObj = Object.entries(data)[1][1];
+  //   let history = Object.entries(dataObj);
+  //   return history.map((history) => {
+  //     return {
+  //       date: history[0],
+  //       open: history[1]["1. open"],
+  //       low: history[1]["2. high"],
+  //       high: history[1]["3. low"],
+  //       close: history[1]["4. close"],
+  //       volume: history[1]["5. volume"],
+  //     };
+  //   });
+  // }
 
-  async function fecthQuote(symbol) {
-    setDataQ(await getDataQuote(symbol));
-    setLoadingQ(false);
-  }
+  // async function fecthQuote(symbol) {
+  //   setDataQ(await getDataQuote(symbol));
+  //   setLoadingQ(false);
+  // }
 
-  async function fecthHistory() {
-    setDataH(await getDataHistory("ADBE"));
-    setLoadingH(false);
-  }
+  // async function fecthHistory() {
+  //   setDataH(await getDataHistory("ADBE"));
+  //   setLoadingH(false);
+  // }
 
   useEffect(() => {
     // FixMe: Retrieve watchlist from persistent storage
@@ -150,14 +150,14 @@ export const StocksProvider = ({ children }) => {
       value={{
         watchList,
         setState,
-        addToWatchlist,
-        deleteToWatchlist,
-        loadingQ,
-        rowDataQ,
-        fecthQuote,
-        loadingH,
-        rowDataH,
-        fecthHistory,
+        // addToWatchlist,
+        // deleteToWatchlist,
+        // loadingQ,
+        // rowDataQ,
+        // fecthQuote,
+        // loadingH,
+        // rowDataH,
+        // fecthHistory,
       }}
     >
       {children}
