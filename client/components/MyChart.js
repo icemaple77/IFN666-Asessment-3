@@ -1,100 +1,84 @@
-import { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  ScrollView,
-  Button,
-  Text,
-} from "react-native";
-import { Divider } from "react-native-elements";
+import { scaleSize } from "../constants/Layout";
+import { SafeAreaView, View, StyleSheet, Dimensions } from "react-native";
+import { LineChart } from "react-native-chart-kit";
 import SearchApiHistory from "./ApiHistory";
-import SearchApiQuote from "./ApiQuotes";
+//for server reauest
+var headers = {
+  Accept: "application/json",
+  "Content-Type": "application/json",
+};
 // import { useStocksContext } from "../contexts/StocksContext";
+const MyLineChart = (props) => {
+  console.log(props);
+  const [data, setData] = useState([0]);
+  const { ServerURL } = useStocksContext();
 
+  // get history data using getHistory function
+
+  //to call data from History function
+  // if data is undefined set to [0] to avoid error
+
+  //from react native chart kit exmaple
+  return (
+    <>
+      <LineChart
+        data={{
+          labels: ["30 Days Ago", "20 Days Ago", "10 Days Ago", "Early month"],
+          datasets: [
+            // set data
+            {
+              data: data,
+            },
+          ],
+        }}
+        width={Dimensions.get("window").width - 16} // from react-native, set width size
+        height={scaleSize(120)}
+        withDots={false}
+        chartConfig={{
+          backgroundColor: "#ffffff",
+          backgroundGradientFrom: "#eff3ff",
+          backgroundGradientTo: "#efefef",
+
+          decimalPlaces: 2,
+          color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+          style: {
+            borderRadius: 16,
+          },
+        }}
+        style={{
+          marginVertical: scaleSize(8),
+          borderRadius: scaleSize(16),
+        }}
+      />
+    </>
+  );
+};
 export default function MyChart(props) {
   const { loadingQ, rowDataQ, errorQ } = SearchApiHistory(props.index);
-  // const { loadingQ, rowDataQ } = useStocksContext();
-  // console.log("rowDataQ", rowDataQ);
 
-  // if (loadingQ == false) {
-  //console.log(rowDataQ);
+  console.log("rowDataQ", rowDataQ);
+
   return (
-    <SafeAreaView>
-      {/* <Text>{rowDataQ.name}</Text>
+    <SafeAreaView style={{ flex: 1 }}>
       <View>
-        <View style={styles.container}>
-          <View style={styles.subContainer}>
-            <View style={styles.leftDataContainer}>
-              <Text style={styles.titleText}> Open </Text>
-              <Text style={styles.dataText}>{rowDataQ.open.toFixed(2)}</Text>
-            </View>
-
-            <View style={styles.leftDataContainer}>
-              <Text style={styles.titleText}> Day High </Text>
-              <Text style={styles.dataText}>{rowDataQ.dayHigh.toFixed(2)}</Text>
-            </View>
-
-            <View style={styles.leftDataContainer}>
-              <Text style={styles.titleText}> Day Low </Text>
-              <Text style={styles.dataText}>{rowDataQ.dayLow.toFixed(2)}</Text>
-            </View>
-          </View>
-
-          <Divider orientation="vertical" height={"100%"} width={0.5} />
-
-          <View style={styles.subContainer}>
-            <View style={styles.rightDataContainer}>
-              <Text style={styles.titleText}> Price </Text>
-              <Text style={styles.dataText}>{rowDataQ.price.toFixed(2)}</Text>
-            </View>
-
-            <View style={styles.rightDataContainer}>
-              <Text style={styles.titleText}> Year High </Text>
-              <Text style={styles.dataText}>
-                {rowDataQ.yearHigh.toFixed(2)}
-              </Text>
-            </View>
-
-            <View style={styles.rightDataContainer}>
-              <Text style={styles.titleText}> Year Low </Text>
-              <Text style={styles.dataText}>{rowDataQ.yearLow.toFixed(2)}</Text>
-            </View>
-          </View>
-        </View>
-      </View> */}
+        <MyLineChart symbol={props.symbol} />
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    marginTop: 10,
+    flex: scaleSize(1),
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    padding: 10,
   },
-  subContainer: {
-    flex: 5,
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  leftDataContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingRight: 10,
-    marginBottom: 15,
-  },
-  rightDataContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingLeft: 10,
-    marginBottom: 15,
-  },
-  titleText: {
-    fontSize: 14,
-    color: "#8b8a90",
-  },
-  dataText: {
-    fontSize: 14,
-    color: "black",
+  header: {
+    textAlign: "center",
+    fontSize: scaleSize(18),
+    padding: scaleSize(16),
+    marginTop: scaleSize(16),
   },
 });
