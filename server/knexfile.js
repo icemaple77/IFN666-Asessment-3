@@ -4,6 +4,6 @@ module.exports = {
     host: "localhost",
     database: "ifn666",
     user: "root",
-    password: "c30049912",
+    password: "p19820301",
   },
 };

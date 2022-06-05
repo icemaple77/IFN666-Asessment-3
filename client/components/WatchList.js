@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { ListItem } from "react-native-elements";
 
-export default function StockList(props) {
+export default function WatchList(props) {
   let data = props.rowData;
   return (
     <SafeAreaView>
@@ -17,7 +17,7 @@ export default function StockList(props) {
             <ListItem
               containerStyle={styles.listitem}
               onPress={() => {
-                props.setHistorySymbol(i);
+                props.setHistorySymbol(item.symbol);
                 props.refRBSheet.current.open();
               }}
             >

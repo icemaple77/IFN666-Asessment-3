@@ -7,10 +7,17 @@ import Login from "./screens/Login";
 import Register from "./screens/Register";
 import { StocksProvider } from "./contexts/StocksContext";
 import "react-native-gesture-handler";
+import WatchList from "./components/WatchList";
+import OpenBottomSheet from "./components/BottomSheet";
+import BottomSheetContext from "./components/BottomSheetContext";
+import Table from "./components/Table";
+import SearchApiQuote from "./components/ApiQuotes";
+import SearchApiHistory from "./components/ApiHistory";
+import MyChart from "./components/MyChart";
 
 const Stack = createStackNavigator();
 
-export default function App(props) {
+export default function App() {
   return (
     <View style={styles.container}>
       <StocksProvider>
@@ -20,6 +27,19 @@ export default function App(props) {
             <Stack.Screen name="Home" component={BottomTabNavigator} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="WatchList" component={WatchList} />
+            <Stack.Screen name="OpenBottomSheet" component={OpenBottomSheet} />
+            <Stack.Screen name="Table" component={Table} />
+            <Stack.Screen name="MyChart" component={MyChart} />
+            <Stack.Screen name="SearchApiQuote" component={SearchApiQuote} />
+            <Stack.Screen
+              name="SearchApiHistory"
+              component={SearchApiHistory}
+            />
+            <Stack.Screen
+              name="BottomSheetContext"
+              component={BottomSheetContext}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </StocksProvider>

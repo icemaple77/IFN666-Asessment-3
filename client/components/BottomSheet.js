@@ -49,7 +49,10 @@ export default function OpenBottomSheet(props) {
             },
           }}
         >
-          <BottomSheetContext symbolIndex={props.symbolIndex} />
+          <BottomSheetContext
+            symbolIndex={props.symbolIndex}
+            symbolName={props.name}
+          />
         </RBSheet>
       </View>
     </SafeAreaView>

@@ -8,11 +8,12 @@ import {
   Text,
 } from "react-native";
 import { Divider } from "react-native-elements";
+import SearchApiHistory from "./ApiHistory";
 import SearchApiQuote from "./ApiQuotes";
 // import { useStocksContext } from "../contexts/StocksContext";
 
-export default function Table(props) {
-  const { loadingQ, rowDataQ, errorQ } = SearchApiQuote(props.index);
+export default function MyChart(props) {
+  const { loadingQ, rowDataQ, errorQ } = SearchApiHistory(props.index);
   // const { loadingQ, rowDataQ } = useStocksContext();
   // console.log("rowDataQ", rowDataQ);
 

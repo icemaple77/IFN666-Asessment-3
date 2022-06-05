@@ -7,15 +7,16 @@ import {
   Text,
 } from "react-native";
 import Table from "./Table";
-import Chart from "./Chart";
+import MyChart from "./MyChart";
 
 export default function BottomSheetContext(props) {
+  console.log(props.symbolIndex);
   return (
     <SafeAreaView>
       <View>
-        <Text>History of aaa</Text>
+        <Text>History of {props.symbolIndex}</Text>
         <Table index={props.symbolIndex}></Table>
-        <Chart></Chart>
+        <MyChart index={props.symbolIndex}></MyChart>
       </View>
     </SafeAreaView>
   );
