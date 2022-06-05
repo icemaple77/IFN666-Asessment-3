@@ -4,10 +4,6 @@ import {
   Text,
   View,
   ScrollView,
-  Keyboard,
-  Button,
-  FlatList,
-  Alert,
   StyleSheet,
   Dimensions,
 } from "react-native";
@@ -19,12 +15,12 @@ export default function MyChart(props) {
   const { loading, rowData, error } = SearchApiHistory(props.index);
 
   console.log("rowDataQ", rowData);
-  const open = rowData;
+  const open = rowData.map((x) => x.open);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView>
       <Text>This is a CHart</Text>
-      {/* <View>
+      <View>
         <>
           <LineChart
             data={{
@@ -37,7 +33,7 @@ export default function MyChart(props) {
               datasets: [
                 // set data
                 {
-                  data: rowDataQ,
+                  data: open,
                 },
               ],
             }}
@@ -61,7 +57,7 @@ export default function MyChart(props) {
             }}
           />
         </>
-      </View> */}
+      </View>
     </SafeAreaView>
   );
 }
