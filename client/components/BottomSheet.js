@@ -40,12 +40,7 @@ export default function OpenBottomSheet(props) {
               backgroundColor: "black",
             },
             container: {
-              minHeight: "20%",
-              maxHeight: "80%",
-              color: "#0000000",
               backgroundColor: "white",
-              borderColor: "white",
-              borderRadius: 2,
             },
           }}
         >

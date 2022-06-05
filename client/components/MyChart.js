@@ -18,7 +18,7 @@ export default function MyChart(props) {
   // console.log("rowDataQ", rowDataQ);
 
   // if (loadingQ == false) {
-  console.log(rowDataQ);
+  //console.log(rowDataQ);
   return (
     <SafeAreaView>
       {/* <Text>{rowDataQ.name}</Text>

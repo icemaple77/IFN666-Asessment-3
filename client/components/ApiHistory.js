@@ -18,8 +18,8 @@ function SearchApiHistory(symbol) {
       }
     })();
   }, [symbol]);
-  console.log("110+" + rowData);
-  console.log("110" + symbol);
+  //console.log("110+" + rowData);
+  //console.log("110" + symbol);
   return {
     loading,
     rowData,

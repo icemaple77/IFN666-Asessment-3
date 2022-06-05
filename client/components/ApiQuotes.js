@@ -41,7 +41,7 @@ async function getDataQuote(symbol) {
       yearLow: quote.yearLow,
     };
   });
-
+  console.log(quote);
   return quote;
 }
 
