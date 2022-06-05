@@ -9,34 +9,35 @@ import {
 } from "react-native";
 import { Divider } from "react-native-elements";
 import SearchApiQuote from "./ApiQuotes";
-// import { useStocksContext } from "../contexts/StocksContext";
 
 export default function Table(props) {
   const { loadingQ, rowDataQ, errorQ } = SearchApiQuote(props.index);
-  // const { loadingQ, rowDataQ } = useStocksContext();
-  // console.log("rowDataQ", rowDataQ);
 
-  // if (loadingQ == false) {
-  console.log(rowDataQ);
+  let Quote = [];
+  rowDataQ.map((x) => {
+    Quote = x;
+  });
+
+  console.log("arr" + Quote.name);
   return (
     <SafeAreaView>
-      {/* <Text>{rowDataQ.name}</Text>
+      <Text>{Quote.name}</Text>
       <View>
         <View style={styles.container}>
           <View style={styles.subContainer}>
             <View style={styles.leftDataContainer}>
               <Text style={styles.titleText}> Open </Text>
-              <Text style={styles.dataText}>{rowDataQ.open.toFixed(2)}</Text>
+              <Text style={styles.dataText}>{Quote.open}</Text>
             </View>
 
             <View style={styles.leftDataContainer}>
               <Text style={styles.titleText}> Day High </Text>
-              <Text style={styles.dataText}>{rowDataQ.dayHigh.toFixed(2)}</Text>
+              <Text style={styles.dataText}>{Quote.dayHigh}</Text>
             </View>
 
             <View style={styles.leftDataContainer}>
               <Text style={styles.titleText}> Day Low </Text>
-              <Text style={styles.dataText}>{rowDataQ.dayLow.toFixed(2)}</Text>
+              <Text style={styles.dataText}>{Quote.dayLow}</Text>
             </View>
           </View>
 
@@ -45,26 +46,25 @@ export default function Table(props) {
           <View style={styles.subContainer}>
             <View style={styles.rightDataContainer}>
               <Text style={styles.titleText}> Price </Text>
-              <Text style={styles.dataText}>{rowDataQ.price.toFixed(2)}</Text>
+              <Text style={styles.dataText}>{Quote.price}</Text>
             </View>
 
             <View style={styles.rightDataContainer}>
               <Text style={styles.titleText}> Year High </Text>
-              <Text style={styles.dataText}>
-                {rowDataQ.yearHigh.toFixed(2)}
-              </Text>
+              <Text style={styles.dataText}>{Quote.yearHigh}</Text>
             </View>
 
             <View style={styles.rightDataContainer}>
               <Text style={styles.titleText}> Year Low </Text>
-              <Text style={styles.dataText}>{rowDataQ.yearLow.toFixed(2)}</Text>
+              <Text style={styles.dataText}>{Quote.yearLow}</Text>
             </View>
           </View>
         </View>
-      </View> */}
+      </View>
     </SafeAreaView>
   );
 }
+// }
 
 const styles = StyleSheet.create({
   container: {
