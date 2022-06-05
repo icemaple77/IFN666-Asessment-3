@@ -1,7 +1,19 @@
 import { scaleSize } from "../constants/Layout";
-import { SafeAreaView, View, StyleSheet, Dimensions } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  View,
+  ScrollView,
+  Keyboard,
+  Button,
+  FlatList,
+  Alert,
+  StyleSheet,
+  Dimensions,
+} from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import SearchApiHistory from "./ApiHistory";
+import {} from "react-native";
 
 export default function MyChart(props) {
   const { loading, rowData, error } = SearchApiHistory(props.index);
