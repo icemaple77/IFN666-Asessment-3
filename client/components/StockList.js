@@ -41,7 +41,7 @@ export default function StockList(props) {
               <Button
                 title={CheckButton(watchList, e.symbol) ? "Delete" : "Add"}
                 style={styles.button}
-                color="black"
+                color={CheckButton(watchList, e.symbol) ? "red" : "green"}
                 onPress={
                   CheckButton(watchList, e.symbol)
                     ? () => {
