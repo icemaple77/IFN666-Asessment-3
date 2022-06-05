@@ -7,7 +7,14 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
-import { LineChart } from "react-native-chart-kit";
+import {
+  LineChart,
+  BarChart,
+  PieChart,
+  ProgressChart,
+  ContributionGraph,
+  StackedBarChart,
+} from "react-native-chart-kit";
 import SearchApiHistory from "./ApiHistory";
 import {} from "react-native";
 
@@ -16,34 +23,32 @@ export default function MyChart(props) {
 
   console.log("rowDataQ", rowData);
   const open = rowData.map((x) => x.open);
+  const data = {
+    labels: ["100 days history"],
+    datasets: [
+      {
+        data: open,
+        color: (opacity = 1) => `rgba(0, 96, 240, ${opacity})`, // optional
+        strokeWidth: 2, // optional
+      },
+    ],
+    legend: [`${props.index}`], // optional
+  };
 
   return (
     <SafeAreaView>
-      <Text>This is a CHart</Text>
+      {/* <Text>{props.index}</Text>{" "} */}
       <View>
         <>
           <LineChart
-            data={{
-              labels: [
-                "30 Days Ago",
-                "20 Days Ago",
-                "10 Days Ago",
-                "Early month",
-              ],
-              datasets: [
-                // set data
-                {
-                  data: open,
-                },
-              ],
-            }}
-            width={Dimensions.get("window").width - 16} // from react-native, set width size
+            data={data}
+            width={Dimensions.get("window").width} // from react-native, set width size
             height={scaleSize(120)}
             withDots={false}
             chartConfig={{
-              backgroundColor: "#ffffff",
-              backgroundGradientFrom: "#eff3ff",
-              backgroundGradientTo: "#efefef",
+              backgroundGradientFrom: "#7bb6e6",
+              backgroundGradientTo: "#144d83",
+              decimalPlaces: 2, // optional, defaults to 2dp
 
               decimalPlaces: 2,
               color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,

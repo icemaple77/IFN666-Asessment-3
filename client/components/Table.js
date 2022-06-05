@@ -17,11 +17,15 @@ export default function Table(props) {
   rowDataQ.map((x) => {
     Quote = x;
   });
+  console.log("arr" + Quote.name);
+  let abc = "";
+  abc = Quote.name;
 
   console.log("arr" + Quote.name);
   return (
     <SafeAreaView>
       <Text>{Quote.name}</Text>
+      {/* <Text>{props.setName(abc)}</Text> */}
       <View>
         <View style={styles.container}>
           <View style={styles.subContainer}>
