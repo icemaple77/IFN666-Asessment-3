@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -15,6 +15,7 @@ import BottomSheetContext from "./BottomSheetContext";
 //import { SafeAreaView } from "react-native-web";
 
 export default function OpenBottomSheet(props) {
+  const [name, setName] = useState("");
   return (
     <SafeAreaView>
       <View
