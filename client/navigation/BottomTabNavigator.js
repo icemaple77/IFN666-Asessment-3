@@ -4,6 +4,7 @@ import TabBarIcon from "../components/TabBarIcon";
 import StocksScreen from "../screens/StocksScreen";
 import SearchScreen from "../screens/SearchScreen";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { UserLogOut } from "../components/logout";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Search";
@@ -33,6 +34,18 @@ export default function BottomTabNavigator({ navigation, route }) {
           title: "Search",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-search" />
+          ),
+          headerShown: false,
+        }}
+      />
+      <BottomTab.Screen
+        name="SignOut"
+        component={UserLogOut}
+        onPress={UserLogOut}
+        options={{
+          title: "SignOut",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="ios-person-outline" />
           ),
           headerShown: false,
         }}
