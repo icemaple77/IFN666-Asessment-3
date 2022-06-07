@@ -19,7 +19,7 @@ export default function BottomSheetContext(props) {
     <SafeAreaView>
       <View>
         <Table index={props.symbolIndex} name={setName}></Table>
-        {/* <MyTable index={props.symbolIndex}></MyTable> */}
+        <MyTable index={props.symbolIndex}></MyTable>
         <MyChart index={props.symbolIndex} name={name}></MyChart>
       </View>
     </SafeAreaView>

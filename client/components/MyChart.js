@@ -41,7 +41,7 @@ export default function MyChart(props) {
       <View>
         <>
           <LineChart
-            data={data.reverse()}
+            data={data}
             width={Dimensions.get("window").width} // from react-native, set width size
             height={scaleSize(220)}
             yAxisLabel="$"
